@@ -1,0 +1,21 @@
+# - - - - - - - - - - - - - ALLOWED FILES - - - -
+# Disallow reading of these files
+<FilesMatch "\.(?:cfg|ini|log|sql)$">
+    Order allow,deny
+    Deny from all
+    Allow from 127.0.0.1
+</FilesMatch>
+
+# Disable indexing of folders if index.php or index.html not exists
+Options -Indexes
+
+# - - - - - - - - - - - - - MOD_REWRITE - - - -
+RewriteEngine On
+RewriteBase /
+
+# Unsets trailing slash directive from directories
+DirectorySlash Off
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)?/?$ /index.php?page=$1&item=$2 [L,QSA]

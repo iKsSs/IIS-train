@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Projekt IIS - Lístky na vlak</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+      span {color:#F00;}
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+<h1>Lístky na vlak</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Martin Pitřík <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xpitri00@stud.fit.vutbr.cz">xpitri00@stud.fit.vutbr.cz</a> -
+		databázový subsystém a uživatelské rozhraní - vyhledávání jízdenek a jejich správa, zobrazování řazení vlaku graficky, kontrola IČ dopravce aj.
+	</dd>
+	<dd>Jakub Pastuszek <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xpastu00@stud.fit.vutbr.cz">xpastu00@stud.fit.vutbr.cz</a> - 
+		správa uživatelů a uživatelské rozhraní - vytváření a úprava jízdních řádů, editace položek v administraci aj.
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://vlak.jecool.net/">http://vlak.jecool.net/</a></dd>
+	<dd><a href="http://vlak.jecool.net/admin/">http://vlak.jecool.net/admin/</a> - administrace</dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>spravce</td><td>spravce</td><td>Správce</td></tr>
+<tr><td>zakaznik</td><td>zakaznik</td><td>Zákazník</td></tr>
+</table>
+
+<h2>Implementace</h2>
+<p>Skripty pro zpracování formulářů jsou umístěny v souboru function.php.<br />
+    Funkce "getX", kde X jsou požadovaná data, vrací pole dat z databáze.<br />   
+    Správa každé kategorie je zpracována funkcí "manageX". Kategorie jsou vlaky, lístky, uživatelé/administrátoři, dopravci, stanice nebo jízdní řady.<br />
+    Funkce "isX", kde X je požadované ověření, vrací logickou hodnotu (pravda/nepravda).<br />
+    Lístek je možné koupi i jako neregistrovaný uživatel, v tom případě pro zadání osobních údajů je vyhrazený čas 5 minut, pak objednávka automaticky expiruje.<br />
+    Automatické odhlášení je provedeno po 30ti minutové neaktivitě.<br />
+    
+    V návrhu UML bylo počítáno s externím systémem (GRAPP), který nemáme k dispozici, proto není implementována aktualizace zpoždění vlaků.<br /><br />
+    
+    Web byl testován na standardních prohlížečích: Chrome, Firefox, Opera a IE8+ (IE8 bez stínů, jinak funkční) - na nižších verzích není zajištěna plná funkcionalita
+</p>
+
+<h2>Instalace</h2>
+<ul>
+<li>Nakopírování souborů (např. přes FTP) na server (případná úprava práv souborů/adresářů)</li>
+<li>Vytvoření databáze a nakonfigurování připojení k ní v souboru config.ini</li>
+<li>Import dat do databáze ze souboru vlakjecool.sql</li>
+<li>Softwarové požadavky:
+    <ul>
+	<li>PHP verze: 5.4 a vyšší</li>
+	<li>DB server: InnoDB</li>
+    </ul>
+</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p></p>
+
+</body>
+</html>
